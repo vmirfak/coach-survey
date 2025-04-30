@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { ChevronRight, ChevronLeft, CheckCircle2 } from "lucide-react";
+import { ChevronRight, ChevronLeft, CheckCircle2, Check } from "lucide-react";
 
-// Types
 type QuestionType = "rating" | "multiSelect";
 
 interface Question {
@@ -54,6 +53,31 @@ const DeveloperFeedbackSurvey = () => {
             "Inadequate Version Control Practices",
           ],
         },
+        {
+          text: "How efficient are our current development workflows?",
+          type: "rating",
+          options: [
+            "Very inefficient",
+            "Somewhat inefficient",
+            "Neutral",
+            "Somewhat efficient",
+            "Very efficient"
+          ]
+        },
+        {
+          text: "Select top 3 technical pain points:",
+          type: "multiSelect",
+          options: [
+            "Slow CI/CD pipelines",
+            "Flaky tests",
+            "Poor documentation",
+            "Complex deployments",
+            "Legacy code challenges",
+            "Environment inconsistencies",
+            "Tooling limitations",
+            "Code review bottlenecks"
+          ]
+        },
       ],
     },
     {
@@ -85,6 +109,44 @@ const DeveloperFeedbackSurvey = () => {
             "Extremely supported",
           ],
         },
+        {
+          text: "How satisfied are you with current growth opportunities?",
+          type: "rating",
+          options: [
+            "Very dissatisfied",
+            "Somewhat dissatisfied",
+            "Neutral",
+            "Somewhat satisfied",
+            "Very satisfied"
+          ]
+        },
+        {
+          text: "Which skills do you want to develop?",
+          type: "multiSelect",
+          options: [
+            "Cloud architecture",
+            "System design",
+            "DevOps practices",
+            "Performance optimization",
+            "Security engineering",
+            "Technical leadership",
+            "Data engineering",
+            "AI/ML applications"
+          ]
+        },
+        {
+          text: "What type of training would benefit you most?",
+          type: "multiSelect",
+          options: [
+            "Hands-on workshops",
+            "Conference attendance",
+            "Certification programs",
+            "Mentorship pairings",
+            "Brown bag sessions",
+            "Online courses",
+            "Project rotations"
+          ]
+        }
       ],
     },
     {
@@ -109,7 +171,60 @@ const DeveloperFeedbackSurvey = () => {
             "Team-building Activities",
           ],
         },
+        {
+          text: "How effective is team communication?",
+          type: "rating",
+          options: [
+            "Very ineffective",
+            "Somewhat ineffective",
+            "Neutral",
+            "Somewhat effective",
+            "Very effective"
+          ]
+        },
+        {
+          text: "Which collaboration aspects need improvement?",
+          type: "multiSelect",
+          options: [
+            "Daily stand-ups",
+            "Sprint planning",
+            "Retrospectives",
+            "Knowledge sharing",
+            "Cross-team coordination",
+            "Documentation practices",
+            "Decision transparency"
+          ]
+        }
       ],
+    },
+    {
+      category: "Leadership Feedback",
+      questions: [
+        {
+          text: "How effective is leadership communication?",
+          type: "rating",
+          options: [
+            "Very ineffective",
+            "Somewhat ineffective",
+            "Neutral",
+            "Somewhat effective",
+            "Very effective"
+          ]
+        },
+        {
+          text: "What leadership qualities should we develop?",
+          type: "multiSelect",
+          options: [
+            "Technical vision",
+            "Decision speed",
+            "Transparency",
+            "Mentorship",
+            "Stakeholder management",
+            "Removing blockers",
+            "Recognizing contributions"
+          ]
+        }
+      ]
     },
     {
       category: "Work-Life Balance",
@@ -169,6 +284,31 @@ const DeveloperFeedbackSurvey = () => {
             "Project Management Software",
           ],
         },
+        {
+          text: "How satisfied are you with our development tools?",
+          type: "rating",
+          options: [
+            "Very dissatisfied",
+            "Somewhat dissatisfied",
+            "Neutral",
+            "Somewhat satisfied",
+            "Very satisfied"
+          ]
+        },
+        {
+          text: "Which tools need immediate attention?",
+          type: "multiSelect",
+          options: [
+            "IDEs/editors",
+            "Version control",
+            "CI/CD systems",
+            "Testing frameworks",
+            "Monitoring tools",
+            "Debugging utilities",
+            "Documentation systems",
+            "Project management"
+          ]
+        }
       ],
     },
     {
@@ -187,6 +327,30 @@ const DeveloperFeedbackSurvey = () => {
             "Work on Cutting-edge Technologies",
           ],
         },
+        {
+          text: "How clear is your career path here?",
+          type: "rating",
+          options: [
+            "Very unclear",
+            "Somewhat unclear",
+            "Neutral",
+            "Somewhat clear",
+            "Very clear"
+          ]
+        },
+        {
+          text: "What career aspects matter most?",
+          type: "multiSelect",
+          options: [
+            "Technical challenges",
+            "Leadership opportunities",
+            "Compensation growth",
+            "Work-life balance",
+            "Learning opportunities",
+            "Project impact",
+            "Company stability"
+          ]
+        }
       ],
     },
     {
@@ -202,6 +366,17 @@ const DeveloperFeedbackSurvey = () => {
             "Satisfied",
             "Extremely Satisfied",
           ],
+        },
+        {
+          text: "How likely are you to recommend working here?",
+          type: "rating",
+          options: [
+            "Not likely at all",
+            "Slightly unlikely",
+            "Neutral",
+            "Somewhat likely",
+            "Extremely likely"
+          ]
         },
       ],
     },
@@ -244,35 +419,47 @@ const DeveloperFeedbackSurvey = () => {
           {question.text}
         </h3>
         <div
-          className={`grid ${
-            {
-              rating: "grid-cols-1 sm:grid-cols-3 md:grid-cols-5",
-              multiSelect: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
-            }[question.type]
-          } gap-3`}
+          className={`grid ${{
+            rating: "grid-cols-1 sm:grid-cols-3 md:grid-cols-5",
+            multiSelect: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
+          }[question.type]
+            } gap-3`}
         >
-          {question.options?.map((option: string) => {
+          {question.options?.map((option: string, index: number) => {
             const isSelected =
               question.type === "multiSelect"
                 ? (currentResponse as string[])?.includes(option)
                 : currentResponse === option;
+            const ratingColorClasses = [
+              "bg-red-400 border-red-600",
+              "bg-orange-400 border-orange-500",
+              "bg-yellow-400 border-yellow-500",
+              "bg-lime-500 border-lime-500",
+              "bg-green-500 border-green-600",
+            ];
+            const selectedColorClass = ratingColorClasses[index] || "bg-blue-500 border-blue-600";
 
             return (
               <button
                 key={option}
                 onClick={() => handleResponse(question.text, option)}
                 className={`
-                  flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer border
-                  ${
-                    isSelected
-                      ? question.type === "rating"
-                        ? "bg-blue-600 text-white border-blue-600 scale-105"
-                        : "bg-green-500 text-white border-green-500 scale-105"
-                      : "bg-gray-100 text-gray-700 hover:bg-blue-100 border-gray-300"
+                flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer border-2
+                ${question.type === "rating"
+                    ? isSelected
+                      ? `${selectedColorClass} text-white transform scale-[1.02] shadow-md`
+                      : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200 hover:border-blue-300"
+                    : isSelected
+                      ? "bg-green-600 text-white border-green-600 transform scale-[1.02] shadow-md"
+                      : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200 hover:border-blue-300"
                   }
-                `}
+                ${question.type === "rating" ? "text-center justify-center h-14" : ""}
+                focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50
+              `}
+                aria-pressed={isSelected}
               >
-                <span>{option}</span>
+                <span className="font-small">{option}</span>
+                {isSelected && question.type === "multiSelect" && <Check className="ml-2 w-4 h-4 text-white" />}
               </button>
             );
           })}
@@ -284,8 +471,10 @@ const DeveloperFeedbackSurvey = () => {
   const handleNext = () => {
     if (currentStep < surveyQuestions.length - 1) {
       setCurrentStep((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
 
   const handlePrevious = () => {
     if (currentStep > 0) {
@@ -304,7 +493,6 @@ const DeveloperFeedbackSurvey = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
         {/* Progress Bar */}
-        
         <div className="bg-blue-600 text-white p-6">
           <h2 className="text-2xl font-bold">
             {surveyQuestions[currentStep].category} Feedback
@@ -331,10 +519,9 @@ const DeveloperFeedbackSurvey = () => {
             disabled={currentStep === 0}
             className={`
               flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer
-              ${
-                currentStep === 0
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "text-blue-600 hover:bg-blue-50"
+              ${currentStep === 0
+                ? "text-gray-400 cursor-not-allowed"
+                : "text-blue-600 hover:bg-blue-50"
               }
             `}
           >

@@ -1,0 +1,86 @@
+{
+  "How efficient are your current development workflows?": "Extremely efficient",
+  "Which areas slow down your development process the most?": [
+    "Unclear Requirements",
+    "Deployment Complexity",
+    "Outdated Documentation",
+    "Legacy Code Maintenance",
+    "Inadequate Version Control Practices",
+    "Limited Access to Resources",
+    "Lack of Automation"
+  ],
+  "How efficient are our current development workflows?": "Somewhat inefficient",
+  "Select top 3 technical pain points:": [
+    "Legacy code challenges",
+    "Flaky tests"
+  ],
+  "How supported do you feel in your professional development?": "Moderately supported",
+  "What skills would you most like to develop?": [
+    "System Design",
+    "Frontend Framework Mastery",
+    "Advanced Backend Techniques"
+  ],
+  "How satisfied are you with current growth opportunities?": "Neutral",
+  "Which skills do you want to develop?": [
+    "Security engineering",
+    "Performance optimization",
+    "AI/ML applications",
+    "Data engineering"
+  ],
+  "What type of training would benefit you most?": [
+    "Online courses",
+    "Certification programs",
+    "Conference attendance",
+    "Brown bag sessions"
+  ],
+  "How would you rate team communication?": "Excellent",
+  "What communication channels need improvement?": [
+    "Slack/Messaging",
+    "Sprint Planning",
+    "Documentation",
+    "Daily Stand-ups"
+  ],
+  "How effective is team communication?": "Somewhat ineffective",
+  "Which collaboration aspects need improvement?": [
+    "Daily stand-ups",
+    "Decision transparency",
+    "Cross-team coordination",
+    "Sprint planning"
+  ],
+  "How effective is leadership communication?": "Very effective",
+  "What leadership qualities should we develop?": [
+    "Removing blockers",
+    "Stakeholder management",
+    "Mentorship",
+    "Recognizing contributions"
+  ],
+  "How would you rate your current work-life balance?": "Neutral",
+  "What contributes most to your stress at work?": [
+    "Technical Debt",
+    "Poor Management"
+  ],
+  "Which tools would you like to see improved or introduced?": [
+    "Collaboration Platforms",
+    "Continuous Integration"
+  ],
+  "How satisfied are you with your current development tools?": "Very Satisfied",
+  "How satisfied are you with our development tools?": "Neutral",
+  "Which tools need immediate attention?": [
+    "Version control",
+    "Monitoring tools",
+    "Project management",
+    "Debugging utilities",
+    "CI/CD systems"
+  ],
+  "What is your primary career goal in the next 2-3 years?": [
+    "Move to Management",
+    "Improve Technical Skills"
+  ],
+  "How clear is your career path here?": "Somewhat clear",
+  "What career aspects matter most?": [
+    "Leadership opportunities",
+    "Learning opportunities"
+  ],
+  "Overall, how satisfied are you with your current role?": "Neutral",
+  "How likely are you to recommend working here?": "Neutral"
+}

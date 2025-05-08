@@ -1,12 +1,68 @@
-import DeveloperFeedbackSurvey from './pages/DeveloperFeedbackSurvey'
-import './App.css'
+// App.tsx
+import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import DeveloperFeedbackSurvey from "./pages/DeveloperFeedbackSurvey";
+import SurveyVisualization from "./pages/SurveyVisualization";
+import { surveyQuestions } from "./data/surveyData";
+import { Responses } from "./types/types";
+import SurveyResultsPage from "./pages/SurveyResultsPage";
 
-function App() {
+export default function App() {
+  const [surveyResponses, setSurveyResponses] = useState<Responses>({});
+
   return (
-    <div className="App">
-      <DeveloperFeedbackSurvey />
-    </div>
-  )
-}
+    <div>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between h-16">
+        <div className="flex items-center space-x-8">
+          <Link 
+            to="/" 
+            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+          >
+            Home
+          </Link>
+          <Link 
+            to="/dashboard" 
+            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+          >
+            Dashboard
+          </Link>
+          <Link 
+            to="/dashboardv2" 
+            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+          >
+            Dashboard V2.0
+          </Link>
+        </div>
+      </div>
+    </nav>
 
-export default App
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <DeveloperFeedbackSurvey 
+              setSurveyResponses={setSurveyResponses}
+            />
+          } 
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <SurveyVisualization
+              answers={surveyResponses}
+              questions={surveyQuestions}
+            />
+          }
+        />
+        <Route
+          path="/dashboardv2"
+          element={
+            <SurveyResultsPage
+            />
+          }
+        />
+      </Routes>
+    </div>
+  );
+}

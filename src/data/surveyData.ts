@@ -1,0 +1,360 @@
+import { SurveyCategory } from "../types/types";
+
+export const surveyQuestions: SurveyCategory[] = [
+  {
+    category: "Technical Workflows",
+    questions: [
+      {
+        text: "How efficient are your current development workflows?",
+        type: "rating",
+        options: [
+          "Extremely inefficient",
+          "Somewhat inefficient",
+          "Neutral",
+          "Somewhat efficient",
+          "Extremely efficient",
+        ],
+      },
+      {
+        text: "Which areas slow down your development process the most?",
+        type: "multiSelect",
+        options: [
+          "Code Review Bottlenecks",
+          "Unclear Requirements",
+          "Outdated Documentation",
+          "Inefficient Testing",
+          "Deployment Complexity",
+          "Legacy Code Maintenance",
+          "Lack of Automation",
+          "Limited Access to Resources",
+          "Inadequate Version Control Practices",
+        ],
+      },
+      {
+        text: "How efficient are our current development workflows?",
+        type: "rating",
+        options: [
+          "Very inefficient",
+          "Somewhat inefficient",
+          "Neutral",
+          "Somewhat efficient",
+          "Very efficient",
+        ],
+      },
+      {
+        text: "Select top 3 technical pain points:",
+        type: "multiSelect",
+        options: [
+          "Slow CI/CD pipelines",
+          "Flaky tests",
+          "Poor documentation",
+          "Complex deployments",
+          "Legacy code challenges",
+          "Environment inconsistencies",
+          "Tooling limitations",
+          "Code review bottlenecks",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Professional Growth",
+    questions: [
+      {
+        text: "What skills would you most like to develop?",
+        type: "multiSelect",
+        options: [
+          "Advanced Backend Techniques",
+          "Frontend Framework Mastery",
+          "Cloud Architecture",
+          "DevOps Practices",
+          "System Design",
+          "Machine Learning Integration",
+          "Data Engineering",
+          "Blockchain Technologies",
+          "Security Best Practices",
+        ],
+      },
+      {
+        text: "How supported do you feel in your professional development?",
+        type: "rating",
+        options: [
+          "Not supported at all",
+          "Slightly supported",
+          "Moderately supported",
+          "Very supported",
+          "Extremely supported",
+        ],
+      },
+      {
+        text: "How satisfied are you with current growth opportunities?",
+        type: "rating",
+        options: [
+          "Very dissatisfied",
+          "Somewhat dissatisfied",
+          "Neutral",
+          "Somewhat satisfied",
+          "Very satisfied",
+        ],
+      },
+      {
+        text: "Which skills do you want to develop?",
+        type: "multiSelect",
+        options: [
+          "Cloud architecture",
+          "System design",
+          "DevOps practices",
+          "Performance optimization",
+          "Security engineering",
+          "Technical leadership",
+          "Data engineering",
+          "AI/ML applications",
+        ],
+      },
+      {
+        text: "What type of training would benefit you most?",
+        type: "multiSelect",
+        options: [
+          "Hands-on workshops",
+          "Conference attendance",
+          "Certification programs",
+          "Mentorship pairings",
+          "Brown bag sessions",
+          "Online courses",
+          "Project rotations",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Team Dynamics",
+    questions: [
+      {
+        text: "How would you rate team communication?",
+        type: "rating",
+        options: ["Very Poor", "Poor", "Average", "Good", "Excellent"],
+      },
+      {
+        text: "What communication channels need improvement?",
+        type: "multiSelect",
+        options: [
+          "Daily Stand-ups",
+          "Slack/Messaging",
+          "Email",
+          "Documentation",
+          "Sprint Planning",
+          "Retrospectives",
+          "One-on-one Meetings",
+          "Team-building Activities",
+        ],
+      },
+      {
+        text: "How effective is team communication?",
+        type: "rating",
+        options: [
+          "Very ineffective",
+          "Somewhat ineffective",
+          "Neutral",
+          "Somewhat effective",
+          "Very effective",
+        ],
+      },
+      {
+        text: "Which collaboration aspects need improvement?",
+        type: "multiSelect",
+        options: [
+          "Daily stand-ups",
+          "Sprint planning",
+          "Retrospectives",
+          "Knowledge sharing",
+          "Cross-team coordination",
+          "Documentation practices",
+          "Decision transparency",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Leadership Feedback",
+    questions: [
+      {
+        text: "How effective is leadership communication?",
+        type: "rating",
+        options: [
+          "Very ineffective",
+          "Somewhat ineffective",
+          "Neutral",
+          "Somewhat effective",
+          "Very effective",
+        ],
+      },
+      {
+        text: "What leadership qualities should we develop?",
+        type: "multiSelect",
+        options: [
+          "Technical vision",
+          "Decision speed",
+          "Transparency",
+          "Mentorship",
+          "Stakeholder management",
+          "Removing blockers",
+          "Recognizing contributions",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Work-Life Balance",
+    questions: [
+      {
+        text: "How would you rate your current work-life balance?",
+        type: "rating",
+        options: [
+          "Extremely Poor",
+          "Poor",
+          "Neutral",
+          "Good",
+          "Extremely Good",
+        ],
+      },
+      {
+        text: "What contributes most to your stress at work?",
+        type: "multiSelect",
+        options: [
+          "Tight Deadlines",
+          "Excessive Meetings",
+          "Unclear Expectations",
+          "Lack of Autonomy",
+          "Technical Debt",
+          "Constant Context Switching",
+          "Inadequate Resources",
+          "Poor Management",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Tools and Infrastructure",
+    questions: [
+      {
+        text: "How satisfied are you with your current development tools?",
+        type: "rating",
+        options: [
+          "Very Dissatisfied",
+          "Dissatisfied",
+          "Neutral",
+          "Satisfied",
+          "Very Satisfied",
+        ],
+      },
+      {
+        text: "Which tools would you like to see improved or introduced?",
+        type: "multiSelect",
+        options: [
+          "IDE",
+          "Version Control",
+          "Continuous Integration",
+          "Deployment Tools",
+          "Monitoring Systems",
+          "Collaboration Platforms",
+          "Code Quality Tools",
+          "Project Management Software",
+        ],
+      },
+      {
+        text: "How satisfied are you with our development tools?",
+        type: "rating",
+        options: [
+          "Very dissatisfied",
+          "Somewhat dissatisfied",
+          "Neutral",
+          "Somewhat satisfied",
+          "Very satisfied",
+        ],
+      },
+      {
+        text: "Which tools need immediate attention?",
+        type: "multiSelect",
+        options: [
+          "IDEs/editors",
+          "Version control",
+          "CI/CD systems",
+          "Testing frameworks",
+          "Monitoring tools",
+          "Debugging utilities",
+          "Documentation systems",
+          "Project management",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Career Aspirations",
+    questions: [
+      {
+        text: "What is your primary career goal in the next 2-3 years?",
+        type: "multiSelect",
+        options: [
+          "Technical Leadership",
+          "Become a Specialist",
+          "Move to Management",
+          "Start a Startup",
+          "Transition to a Different Tech Domain",
+          "Improve Technical Skills",
+          "Work on Cutting-edge Technologies",
+        ],
+      },
+      {
+        text: "How clear is your career path here?",
+        type: "rating",
+        options: [
+          "Very unclear",
+          "Somewhat unclear",
+          "Neutral",
+          "Somewhat clear",
+          "Very clear",
+        ],
+      },
+      {
+        text: "What career aspects matter most?",
+        type: "multiSelect",
+        options: [
+          "Technical challenges",
+          "Leadership opportunities",
+          "Compensation growth",
+          "Work-life balance",
+          "Learning opportunities",
+          "Project impact",
+          "Company stability",
+        ],
+      },
+    ],
+  },
+  {
+    category: "Final Thoughts",
+    questions: [
+      {
+        text: "Overall, how satisfied are you with your current role?",
+        type: "rating",
+        options: [
+          "Extremely Dissatisfied",
+          "Dissatisfied",
+          "Neutral",
+          "Satisfied",
+          "Extremely Satisfied",
+        ],
+      },
+      {
+        text: "How likely are you to recommend working here?",
+        type: "rating",
+        options: [
+          "Not likely at all",
+          "Slightly unlikely",
+          "Neutral",
+          "Somewhat likely",
+          "Extremely likely",
+        ],
+      },
+    ],
+  },
+];

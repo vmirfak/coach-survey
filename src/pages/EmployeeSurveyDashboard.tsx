@@ -415,7 +415,7 @@ export default function EmployeeSurveyDashboard() {
                     <BarChart
                       data={getCareerGoalsData()}
                       layout="vertical"
-                      margin={{ top: 5, right: 5, left: 120, bottom: 5 }}
+                      margin={{ top: 5, right: 5, left: 10, bottom: 5 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
@@ -556,7 +556,7 @@ export default function EmployeeSurveyDashboard() {
                     <BarChart
                       data={getDesiredSkillsData()}
                       layout="vertical"
-                      margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis type="number" />
@@ -593,7 +593,7 @@ export default function EmployeeSurveyDashboard() {
                   <BarChart
                     data={getCareerGoalsData()}
                     layout="vertical"
-                    margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
@@ -656,7 +656,7 @@ export default function EmployeeSurveyDashboard() {
                     <BarChart
                       data={getToolsNeedingAttention()}
                       layout="vertical"
-                      margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis type="number" />
@@ -677,7 +677,7 @@ export default function EmployeeSurveyDashboard() {
                   <BarChart
                     data={getDevPainPointsData()}
                     layout="vertical"
-                    margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
@@ -758,7 +758,7 @@ export default function EmployeeSurveyDashboard() {
                   <BarChart
                     data={getCollaborationAreasData()}
                     layout="vertical"
-                    margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
@@ -781,7 +781,7 @@ export default function EmployeeSurveyDashboard() {
                         .map(([name, count]) => ({ name, count: count as number }))
                         .sort((a, b) => b.count - a.count) : []}
                     layout="vertical"
-                    margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />

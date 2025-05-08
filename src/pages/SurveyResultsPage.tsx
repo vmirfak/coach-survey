@@ -200,7 +200,7 @@ const SurveyResultsPage = () => {
                             <div key={question} className="bg-white rounded-lg shadow-md overflow-hidden">
                                 <button
                                     onClick={() => toggleChart(question)}
-                                    className="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 transition-colors"
+                                    className="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                                 >
                                     <h3 className="text-lg font-medium">{question}</h3>
                                     {expandedCharts[question] ? <ChevronUp /> : <ChevronDown />}
@@ -232,7 +232,7 @@ const SurveyResultsPage = () => {
                             <div key={question} className="bg-white rounded-lg shadow-md overflow-hidden">
                                 <button
                                     onClick={() => toggleChart(question)}
-                                    className="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 transition-colors"
+                                    className="w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                                 >
                                     <h3 className="text-lg font-medium">{question}</h3>
                                     {expandedCharts[question] ? <ChevronUp /> : <ChevronDown />}

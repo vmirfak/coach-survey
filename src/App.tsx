@@ -6,6 +6,7 @@ import SurveyVisualization from "./pages/SurveyVisualization";
 import { surveyQuestions } from "./data/surveyData";
 import { Responses } from "./types/types";
 import SurveyResultsPage from "./pages/SurveyResultsPage";
+import EmployeeSurveyDashboard from "./pages/EmployeeSurveyDashboard";
 
 export default function App() {
   const [surveyResponses, setSurveyResponses] = useState<Responses>({});
@@ -13,38 +14,44 @@ export default function App() {
   return (
     <div>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between h-16">
-        <div className="flex items-center space-x-8">
-          <Link 
-            to="/" 
-            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-          >
-            Home
-          </Link>
-          <Link 
-            to="/dashboard" 
-            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-          >
-            Dashboard
-          </Link>
-          <Link 
-            to="/dashboardv2" 
-            className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-          >
-            Dashboard V2.0
-          </Link>
+        <div className="flex justify-between h-16">
+          <div className="flex items-center space-x-8">
+            <Link
+              to="/"
+              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
+              Home
+            </Link>
+            <Link
+              to="/dashboard"
+              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/dashboardv2"
+              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
+              Dashboard V2.0
+            </Link>
+            <Link
+              to="/dashboardv3"
+              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
+              Dashboard V3.0
+            </Link>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
-            <DeveloperFeedbackSurvey 
+            <DeveloperFeedbackSurvey
               setSurveyResponses={setSurveyResponses}
             />
-          } 
+          }
         />
         <Route
           path="/dashboard"
@@ -59,6 +66,20 @@ export default function App() {
           path="/dashboardv2"
           element={
             <SurveyResultsPage
+            />
+          }
+        />
+        <Route
+          path="/dashboardv2"
+          element={
+            <SurveyResultsPage
+            />
+          }
+        />
+        <Route
+          path="/dashboardv3"
+          element={
+            <EmployeeSurveyDashboard
             />
           }
         />

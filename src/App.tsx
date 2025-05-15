@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import DeveloperFeedbackSurvey from "./pages/DeveloperFeedbackSurvey";
 import { Responses } from "./types/types";
-import SurveyResultsPage from "./pages/SurveyResultsPage";
 import EmployeeSurveyDashboard from "./pages/EmployeeSurveyDashboard";
 
 export default function App() {
@@ -21,16 +20,10 @@ export default function App() {
               Home
             </Link>
             <Link
-              to="/dashboardv2"
+              to="/dashboard"
               className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
             >
-              Dashboard V2.0
-            </Link>
-            <Link
-              to="/dashboardv3"
-              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              Dashboard V3.0
+              Dashboard
             </Link>
           </div>
         </div>
@@ -46,21 +39,7 @@ export default function App() {
           }
         />
         <Route
-          path="/dashboardv1"
-          element={
-            <SurveyResultsPage
-            />
-          }
-        />
-        <Route
-          path="/dashboardv2"
-          element={
-            <SurveyResultsPage
-            />
-          }
-        />
-        <Route
-          path="/dashboardv3"
+          path="/dashboard"
           element={
             <EmployeeSurveyDashboard
             />

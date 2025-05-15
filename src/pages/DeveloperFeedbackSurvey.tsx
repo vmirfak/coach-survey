@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronRight, ChevronLeft, CheckCircle2, Check } from "lucide-react";
 import { Question, Responses } from "../types/types";
 import { ToastContainer } from "react-toastify";
-import { showErrorToast, showLoadingToast, updateToastToSuccess } from "../utils/toastUtils";
+import { showErrorToast, showSuccessToast } from "../utils/toastUtils";
 import { surveyQuestions } from "../data/surveyData";
 
 interface DeveloperFeedbackSurveyProps {
@@ -12,6 +12,7 @@ interface DeveloperFeedbackSurveyProps {
 const DeveloperFeedbackSurvey = ({ setSurveyResponses }: DeveloperFeedbackSurveyProps) => {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [responses, setResponses] = useState<Responses>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleResponse = (questionText: string, value: string) => {
     const question = surveyQuestions
@@ -113,12 +114,9 @@ const DeveloperFeedbackSurvey = ({ setSurveyResponses }: DeveloperFeedbackSurvey
   };
 
   const handleSubmit = async () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
-      const toastId = showLoadingToast(
-        <div className="flex items-center gap-2">
-          <span>Submitting your survey...</span>
-        </div>
-      );
+
 
       setSurveyResponses(responses);
 
@@ -130,21 +128,12 @@ const DeveloperFeedbackSurvey = ({ setSurveyResponses }: DeveloperFeedbackSurvey
         },
         body: JSON.stringify({ responses }),
       });
+      setIsSubmitted(true);
+      showSuccessToast("Survey submitted!")
 
       if (!response.ok) {
         throw new Error('Submission failed');
       }
-
-      // Success feedback
-      updateToastToSuccess(
-        toastId,
-        <div className="flex items-center gap-2">
-          <div>
-            <p className="font-medium">Survey submitted!</p>
-            <p className="text-xs text-gray-500">Thank you for your feedback</p>
-          </div>
-        </div>
-      );
 
     } catch (error) {
       showErrorToast("Submission failed ☹️");
@@ -156,64 +145,76 @@ const DeveloperFeedbackSurvey = ({ setSurveyResponses }: DeveloperFeedbackSurvey
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
-        {/* Progress Bar */}
-        <div className="bg-blue-600 text-white p-6">
-          <h2 className="text-2xl font-bold">
-            {surveyQuestions[currentStep].category} Feedback
-          </h2>
-          <p className="text-sm mt-1">
-            Step {currentStep + 1} of {surveyQuestions.length}
-          </p>
+      <ToastContainer />
+      {isSubmitted ? (
+        <div className="bg-white p-10 rounded-2xl shadow-2xl text-center max-w-xl w-full animate-fadeIn">
+          <h2 className="text-2xl font-bold text-green-600 mb-4">Thank You! 🎉</h2>
+          <p className="text-gray-700">We appreciate your feedback. Have a great day!</p>
         </div>
-        <div className="w-full bg-gray-100 h-2">
-          <div
-            className="bg-blue-600 h-2 transition-all duration-300"
-            style={{
-              width: `${((currentStep + 1) / surveyQuestions.length) * 100}%`,
-            }}
-          />
-        </div>
-        <div className="p-6">
-          {surveyQuestions[currentStep].questions.map(renderQuestion)}
-        </div>
+      ) : (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+            {/* Progress Bar */}
+            <div className="bg-blue-600 text-white p-6">
+              <h2 className="text-2xl font-bold">
+                {surveyQuestions[currentStep].category} Feedback
+              </h2>
+              <p className="text-sm mt-1">
+                Step {currentStep + 1} of {surveyQuestions.length}
+              </p>
+            </div>
+            <div className="w-full bg-gray-100 h-2">
+              <div
+                className="bg-blue-600 h-2 transition-all duration-300"
+                style={{
+                  width: `${((currentStep + 1) / surveyQuestions.length) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="p-6">
+              {surveyQuestions[currentStep].questions.map(renderQuestion)}
+            </div>
 
-        <div className="flex justify-between items-center p-6 bg-gray-100">
-          <button
-            onClick={handlePrevious}
-            disabled={currentStep === 0}
-            className={`
+            <div className="flex justify-between items-center p-6 bg-gray-100">
+              <button
+                onClick={handlePrevious}
+                disabled={currentStep === 0}
+                className={`
               flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer
               ${currentStep === 0
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-blue-600 hover:bg-blue-50"
-              }
+                    ? "text-gray-400 cursor-not-allowed"
+                    : "text-blue-600 hover:bg-blue-50"
+                  }
             `}
-          >
-            <ChevronLeft /> Previous
-          </button>
+              >
+                <ChevronLeft /> Previous
+              </button>
 
-          {isLastStep ? (
-            <button
-              onClick={handleSubmit}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
-            >
-              Submit Survey <CheckCircle2 />
-            </button>
-          ) : (
-            <button
-              onClick={handleNext}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
-            >
-              Next <ChevronRight />
-            </button>
-          )}
+              {isLastStep ? (
+                <button
+                  onClick={handleSubmit}
+                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer"
+                >
+                  Submit Survey <CheckCircle2 />
+                </button>
+              ) : (
+                <button
+                  onClick={handleNext}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+                >
+                  Next <ChevronRight />
+                </button>
+              )}
+            </div>
+          </div>
+
         </div>
-      </div>
+      )}
       <ToastContainer />
     </div>
-
   );
+
+
 };
 
 export default DeveloperFeedbackSurvey;

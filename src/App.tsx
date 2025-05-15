@@ -2,14 +2,12 @@
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import DeveloperFeedbackSurvey from "./pages/DeveloperFeedbackSurvey";
-import SurveyVisualization from "./pages/SurveyVisualization";
-import { surveyQuestions } from "./data/surveyData";
 import { Responses } from "./types/types";
 import SurveyResultsPage from "./pages/SurveyResultsPage";
 import EmployeeSurveyDashboard from "./pages/EmployeeSurveyDashboard";
 
 export default function App() {
-  const [surveyResponses, setSurveyResponses] = useState<Responses>({});
+  const [, setSurveyResponses] = useState<Responses>({});
 
   return (
     <div>
@@ -21,12 +19,6 @@ export default function App() {
               className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
             >
               Home
-            </Link>
-            <Link
-              to="/dashboard"
-              className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-            >
-              Dashboard
             </Link>
             <Link
               to="/dashboardv2"
@@ -54,16 +46,7 @@ export default function App() {
           }
         />
         <Route
-          path="/dashboard"
-          element={
-            <SurveyVisualization
-              answers={surveyResponses}
-              questions={surveyQuestions}
-            />
-          }
-        />
-        <Route
-          path="/dashboardv2"
+          path="/dashboardv1"
           element={
             <SurveyResultsPage
             />

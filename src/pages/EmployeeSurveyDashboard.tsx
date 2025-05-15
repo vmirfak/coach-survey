@@ -94,7 +94,6 @@ export default function EmployeeSurveyDashboard() {
     }
   }, [searchTerm, responses]);
 
-  // Helper functions for data transformation
   const countMetrics = (questionKey: string): MetricCounts => {
     const counts: MetricCounts = {};
 
@@ -123,7 +122,6 @@ export default function EmployeeSurveyDashboard() {
     return counts;
   };
 
-  // Data transformation for charts
   const getOverallSatisfactionData = (): SatisfactionData[] => {
     const satisfactionCounts = countMetrics("Overall, how satisfied are you with your current role?");
     return Object.entries(satisfactionCounts).map(([name, value]) => ({ name, value }));
@@ -293,7 +291,6 @@ export default function EmployeeSurveyDashboard() {
         {view === 'overview' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Overall Satisfaction */}
               {/* Overall Role Satisfaction */}
               <div className="bg-white shadow rounded-lg p-6">
                 <h2 className="text-lg font-medium text-gray-900 mb-4">Overall Role Satisfaction</h2>
@@ -315,14 +312,20 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                      <Tooltip
+                        formatter={(value, name) => {
+                          const total = getOverallSatisfactionData().reduce((sum, item) => sum + item.value, 0);
+                          const percentage = ((Number(value) / total) * 100).toFixed(0);
+                          return [`${percentage}%`, name];
+                        }}
+                      />
                       <Legend
                         layout="vertical"
                         verticalAlign="middle"
                         align="right"
                         formatter={(value, entry) => {
                           const { payload } = entry;
-                          const percentage = (payload?.value / getOverallSatisfactionData().reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0);
+                          const percentage = ((payload?.value / getOverallSatisfactionData().reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0);
                           return <span className="text-sm">{`${value}: ${percentage}%`}</span>;
                         }}
                       />
@@ -341,7 +344,7 @@ export default function EmployeeSurveyDashboard() {
                         data={getWorkflowEfficiencyData()}
                         cx="40%"
                         cy="50%"
-                        labelLine={false}
+                        labelLine={true}
                         label={false}
                         outerRadius={60}
                         fill="#8884d8"
@@ -352,14 +355,22 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                      <Tooltip
+                        formatter={(value, name, props) => {
+                          // Get all data points from the payload
+                          const allData = props.payload[0]?.payload?.allData || getWorkflowEfficiencyData();
+                          const total = allData.reduce((sum: number, item: { value: number }) => sum + item.value, 0);
+                          const percentage = ((Number(value) / total) * 100).toFixed(0);
+                          return [`${percentage}%`, name];
+                        }}
+                      />
                       <Legend
                         layout="vertical"
                         verticalAlign="middle"
                         align="right"
                         formatter={(value, entry) => {
                           const { payload } = entry;
-                          const percentage = (payload?.value / getWorkflowEfficiencyData().reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0);
+                          const percentage = ((payload?.value / getWorkflowEfficiencyData().reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0);
                           return <span className="text-sm">{`${value}: ${percentage}%`}</span>;
                         }}
                       />
@@ -389,14 +400,20 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                      <Tooltip
+                        formatter={(value, name) => {
+                          const total = getRecommendationLikelihoodData().reduce((sum, item) => sum + item.value, 0);
+                          const percentage = ((Number(value) / total) * 100).toFixed(0);
+                          return [`${percentage}%`, name];
+                        }}
+                      />
                       <Legend
                         layout="vertical"
                         verticalAlign="middle"
                         align="right"
                         formatter={(value, entry) => {
                           const { payload } = entry;
-                          const percentage = (payload?.value / getRecommendationLikelihoodData().reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0);
+                          const percentage = ((payload?.value / getRecommendationLikelihoodData().reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0);
                           return <span className="text-sm">{`${value}: ${percentage}%`}</span>;
                         }}
                       />
@@ -406,6 +423,7 @@ export default function EmployeeSurveyDashboard() {
               </div>
             </div>
 
+            {/* Rest of your component remains the same */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Career Goals */}
               <div className="bg-white shadow rounded-lg p-6">
@@ -532,14 +550,20 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                      <Tooltip
+                        formatter={(value, name) => {
+                          const total = getCareerPathClarityData().reduce((sum, item) => sum + item.value, 0);
+                          const percentage = ((Number(value) / total) * 100).toFixed(0);
+                          return [`${percentage}%`, name];
+                        }}
+                      />
                       <Legend
                         layout="vertical"
                         verticalAlign="middle"
                         align="right"
                         formatter={(value, entry) => {
                           const { payload } = entry;
-                          const percentage = (payload?.value / getCareerPathClarityData().reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0);
+                          const percentage = ((payload?.value / getCareerPathClarityData().reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0);
                           return <span className="text-sm">{`${value}: ${percentage}%`}</span>;
                         }}
                       />
@@ -611,7 +635,7 @@ export default function EmployeeSurveyDashboard() {
         {view === 'tools' && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Development Workflow Efficiency */}
+              {/* Workflow Efficiency */}
               <div className="bg-white shadow rounded-lg p-6">
                 <h2 className="text-lg font-medium text-gray-900 mb-4">Development Workflow Efficiency</h2>
                 <div className="h-64">
@@ -621,7 +645,7 @@ export default function EmployeeSurveyDashboard() {
                         data={getWorkflowEfficiencyData()}
                         cx="40%"
                         cy="50%"
-                        labelLine={false}
+                        labelLine={true}
                         label={false}
                         outerRadius={80}
                         fill="#8884d8"
@@ -632,14 +656,22 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                      <Tooltip
+                        formatter={(value, name, props) => {
+                          // Get all data points from the payload
+                          const allData = props.payload[0]?.payload?.allData || getWorkflowEfficiencyData();
+                          const total = allData.reduce((sum: number, item: { value: number }) => sum + item.value, 0);
+                          const percentage = ((Number(value) / total) * 100).toFixed(0);
+                          return [`${percentage}%`, name];
+                        }}
+                      />
                       <Legend
                         layout="vertical"
                         verticalAlign="middle"
                         align="right"
                         formatter={(value, entry) => {
                           const { payload } = entry;
-                          const percentage = (payload?.value / getWorkflowEfficiencyData().reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0);
+                          const percentage = ((payload?.value / getWorkflowEfficiencyData().reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0);
                           return <span className="text-sm">{`${value}: ${percentage}%`}</span>;
                         }}
                       />
@@ -716,7 +748,6 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -743,7 +774,6 @@ export default function EmployeeSurveyDashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
